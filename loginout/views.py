@@ -19,7 +19,7 @@ class CustomLoginView(View):
             if check_password(password, user.password):  # 비밀번호 확인
                 request.session['user_id'] = user.id
                 request.session['username'] = user.username
-                return redirect('/blog')
+                return redirect('/')
             else:
                 messages.error(request, "아이디 또는 패스워드가 틀렸습니다.")
                 return render(request, self.template_name)
