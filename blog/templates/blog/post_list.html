@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Blog Posts</h1>
-    {% if user_id}
-        <p>Welcome, {{ username }}!</p>
+    {% if session.user_id %}
+        <p>Welcome, {{ session.username }}!</p>
         <a href="{% url 'post_create' %}">Create New Post</a>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}

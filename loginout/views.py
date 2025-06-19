@@ -23,7 +23,10 @@ class CustomLoginView(View):
             return render(request, self.template_name)
 
 class CustomLogoutView(View):
-    next_page = '/blog'
+    def post(self, request):
+        # 로그아웃 처리
+        request.session.flush()
+        return redirect('/blog')
 
 class SignupView(View):
     template_name = 'loginout/signup.html'
