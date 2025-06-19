@@ -36,10 +36,9 @@
                         {% if user_id %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">로그아웃</a></li>
                         {% else %}
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#" data-bs-toggle="modal" data-bs-target="#loginModal2">로그인</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">로그인</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">회원가입</a></li>
-                        {% endif %}
-                        
+                        {% endif %}                        
                     </ul>
                 </div>
             </div>
@@ -266,38 +265,7 @@
         </div>
         <!-- Portfolio Modals-->
         <!-- Portfolio Modal 1-->
-        <div class="portfolio-modal modal fade" id="loginModal2" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- 로그인 제목 -->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">로그인</h2>
-                    <!-- 로그인폼 html 가져오기-->
-                     <div class="mt-4">
-                    <form method="post" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
-                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- Portfolio Modal 2-->
         <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -473,37 +441,69 @@
 
 
 <!-- 로그인 모달 -->
- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form id="loginForm" method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">로그인</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="portfolio-modal modal fade" id="loginModal" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- 로그인 제목 -->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">로그인</h2>
+                    <!-- 로그인폼 html 가져오기-->
+                     <div class="mt-4">
+                    <form id ='loginForm' method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="username" class="form-label">아이디</label>
-            <input type="text" class="form-control" name="username" required>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">비밀번호</label>
-            <input type="password" class="form-control" name="password" required>
-          </div>
-          <div id="loginError" class="text-danger"></div>
+
+<!-- 로그아웃모달 -->
+<div class="portfolio-modal modal fade" id="logoutModal" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- 로그아웃 제목 -->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">로그아웃</h2>
+                                    <!-- 로그아웃폼 html 가져오기-->
+                                    <form id="logoutForm" method="post" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <p>정말로 로그아웃하시겠습니까?</p>
+                                        <button type="submit" class="btn btn-primary">로그아웃</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">로그인</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 
 <!-- 자바스크립트 -->
  <script>
+    $(document).ready(function() {
+// 로그인          
 $('#loginForm').on('submit', function(e) {
   e.preventDefault();
   $.ajax({
@@ -512,13 +512,34 @@ $('#loginForm').on('submit', function(e) {
     data: $(this).serialize(),
     success: function(data) {
       if (data.success) {
-        location.reload();
+        location.href = "{% url 'home' %}"; // 로그인 성공 후 홈으로 리다이렉트
       } else {
         $('#loginError').text(data.error || '로그인 실패');
       }
     },
     error: function() {
       $('#loginError').text('서버 오류');
+    }
+  });
+});
+    });
+
+// 로그아웃 ajax
+$('#logoutForm').on('submit', function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: "{% url 'logout' %}",
+    type: "POST",
+    data: $(this).serialize(),
+    success: function(data) {
+      if (data.success) {
+        location.reload();
+      } else {
+        alert('로그아웃 실패');
+      }
+    },
+    error: function() {
+      alert('서버 오류');
     }
   });
 });

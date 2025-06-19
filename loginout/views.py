@@ -3,10 +3,13 @@ from django.views import View
 from . models import UserProfile
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
+from django.http import JsonResponse
 # from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 # CustomLoginView, CustomLogoutView
 
+# ajax로 호출되는 부분이기 대문에 리턴은 render나 redirect가 아닌
+# json으로 처리해야함
 class CustomLoginView(View):
     template_name = 'loginout/login.html'
     def get(self, request):
@@ -19,20 +22,16 @@ class CustomLoginView(View):
             if check_password(password, user.password):  # 비밀번호 확인
                 request.session['user_id'] = user.id
                 request.session['username'] = user.username
-                return redirect('/')
-            else:
-                messages.error(request, "아이디 또는 패스워드가 틀렸습니다.")
-                return render(request, self.template_name)
+                return JsonResponse({'success': True})            
         except Exception as e:
-            print(f"Error during login: {e}")
-            messages.error(request, str(e))
-            return render(request, self.template_name)
+            return JsonResponse({'success': False, 'error': str(e)})
+        return JsonResponse({'success': False, 'error': "로그인 실패"})
 
 class CustomLogoutView(View):
     def post(self, request):
         # 로그아웃 처리
         request.session.flush()
-        return redirect('/blog')
+        return JsonResponse({'success': True})
 
 class SignupView(View):
     template_name = 'loginout/signup.html'
