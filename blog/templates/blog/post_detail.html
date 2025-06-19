@@ -4,13 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title }}</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#delete-btn').click(function(event) {
+                event.preventDefault();
+                if (confirm('정말 삭제하시겠습니까?')) {
+                    $('#delete-form').submit();
+                }
+            });
+        });
+    </script>    
 </head>
 <body>
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
     <p>Published on: {{ post.created_at }}</p>
     <a href="{% url 'post_update' post.pk %}">Edit</a>
-    <a href="{% url 'post_delete' post.pk %}">Delete</a>
+    <form id="delete-form" action="{% url 'post_delete' post.pk %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button id="delete-btn">Delete</button>
+    </form>
     <a href="{% url 'post_list' %}">Back to Posts</a>
 </body>
+
 </html>
