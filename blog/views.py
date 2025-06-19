@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post  # Import the Post model
@@ -6,6 +7,13 @@ class PostListView(ListView):
     model = Post  # Specify the model to use
     template_name = 'blog/post_list.html'  # Specify the template to use
     context_object_name = 'posts'  # Specify the context variable name
+        
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['user_id'] = self.request.session.get('user_id')
+        context['username'] = self.request.session.get('username')
+        return context
+
 
 class PostDetailView(DetailView):
     model = Post  # Specify the model to use
