@@ -9,9 +9,17 @@
     <h1>로그인</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <p><input type="text" placeholder="사용자 이름" id="username" name="username" required></p>
+        <p><input type="password" placeholder="비밀번호" id="password" name="password" required></p>
         <button type="submit">로그인</button>
     </form>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     
 </body>
 </html>
