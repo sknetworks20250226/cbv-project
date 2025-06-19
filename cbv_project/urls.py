@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from blog import views
 # Import the include function to include URLs from other apps
 urlpatterns = [
+    path('', views.HomeView.as_view(), name='home'),  # Include the URLs from the blog app
     path('admin/', admin.site.urls),
     # Include the URLs from the blog app
     path('blog/', include('blog.urls')),
