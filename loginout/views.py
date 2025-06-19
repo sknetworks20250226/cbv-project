@@ -24,3 +24,15 @@ class CustomLoginView(View):
 
 class CustomLogoutView(View):
     next_page = '/blog'
+
+class SignupView(View):
+    template_name = 'loginout/signup.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        
