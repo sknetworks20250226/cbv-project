@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p><input type="text" placeholder="사용자 이름" id="username" name="username" required></p>
+        <p><input type="password" placeholder="비밀번호" id="password" name="password" required></p>
+        <p><input type="email" placeholder="이메일" id="email" name="email" required></p>
+        <button type="submit">회원가입</button>
+    </form>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

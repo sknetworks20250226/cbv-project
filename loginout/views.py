@@ -35,4 +35,14 @@ class SignupView(View):
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
-        
+        # 중복체크
+        if UserProfile.objects.filter(username=username).exists():
+            messages.error(request, "이미 존재하는 아이디입니다.")
+            return render(request, self.template_name)
+        if UserProfile.objects.filter(email=email).exists():
+            messages.error(request, "이미 존재하는 이메일입니다.")
+            return render(request, self.template_name)
+        # 회원가입 처리
+        user = UserProfile.objects.create(username=username, password=password, email=email)
+        messages.success(request, "회원가입이 완료되었습니다.")
+        return redirect('login')
