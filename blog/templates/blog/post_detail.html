@@ -10,9 +10,7 @@
     <p>{{ post.content }}</p>
     <p>Published on: {{ post.created_at }}</p>
     <a href="{% url 'post_update' post.pk %}">Edit</a>
-    <form action="{% url 'post_delete' post.pk %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
+    <a href="{% url 'post_delete' post.pk %}">Delete</a>
+    <a href="{% url 'post_list' %}">Back to Posts</a>
 </body>
 </html>
