@@ -23,5 +23,5 @@ urlpatterns = [
     # Include the URLs from the blog app
     path('blog/', include('blog.urls')),
     # Include the URLs from the loginout app
-    path('account/', include('logginout.urls')),
+    path('account/', include('loginout.urls')),
 ]

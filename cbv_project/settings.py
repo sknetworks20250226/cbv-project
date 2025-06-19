@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',  # Custom app for blog functionality
-    'logginout',  # Custom app for user login/logout functionality
+    'loginout',  # Custom app for user login/logout functionality
 ]
 
 MIDDLEWARE = [
