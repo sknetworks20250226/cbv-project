@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Include the URLs from the blog app
     path('blog/', include('blog.urls')),
+    # Include the URLs from the loginout app
+    path('account/', include('logginout.urls')),
 ]
