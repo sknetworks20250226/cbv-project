@@ -550,7 +550,10 @@
                     if (response.success) {
                         alert(response.message);
                         $('#signupModal').modal('hide');
-                        $('#loginModal').modal('show');
+                        // $('#loginModal').modal('show');
+                        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                        loginModal.show();
+
                     } else {
                         alert(response.error);
                     }
