@@ -540,23 +540,23 @@
  <script>
     $(document).ready(function() {
         // 회원가입 폼 제출
-                $('#signupForm').on('submit', function(e) {
-                    e.preventDefault();
-                    $.ajax({
-                        url: '{% url "signup" %}',
-                        type: 'POST',
-                        data: $(this).serialize(),
-                        success: function(response) {
-                            if (response.success) {
-                                alert(response.message);
-                                $('#signupModal').modal('hide');
-                                $('#loginModal2').modal('show');
-                            } else {
-                                alert(response.error);
-                            }
-                        }
-                    });
-                });
+        $('#signupForm').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '{% url "signup" %}',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        $('#signupModal').modal('hide');
+                        $('#loginModal').modal('show');
+                    } else {
+                        alert(response.error);
+                    }
+                }
+            });
+        });
 // 로그인          
 $('#loginForm').on('submit', function(e) {
   e.preventDefault();
